@@ -4,11 +4,18 @@ USER root
 
 SHELL ["/bin/bash", "-c"]
 
+# git install
+RUN apt-get update -y
+RUN apt-get install -y git
+
+# copy gams files
 COPY gams-install-dir/gamsFiles /opt/gams/gamsFiles
 COPY gams-install-dir/gamsJavaApi /opt/gams/gamsJavaApi
 
 # install gams
 WORKDIR /opt/gams
+RUN ls -la /opt/gams
+RUN ls -la /opt/gams/gamsFiles
 RUN /opt/gams/gamsFiles/linux_x64_64_sfx.exe
 
 # remove install file
